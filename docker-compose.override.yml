@@ -6,20 +6,13 @@ version: "3"
 
 volumes:
   smtp_maildir:
+networks:
+  proxy:
+    external: true
+  traefik:
+    external: true
 
 services:
-  georchestra.mydomain.org:
-    image: traefik:1.7
-    ports:
-      - "80:80"
-      - "443:443"
-      # uncomment the next line to get a web ui + api at https://georchestra.mydomain.org:8080/traefik/
-      #- "8080:8080" 
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./resources/ssl:/etc/traefik/ssl/
-      - ./resources/traefik.toml:/traefik.toml
-
   proxy:
     labels:
       - "traefik.enable=true"
