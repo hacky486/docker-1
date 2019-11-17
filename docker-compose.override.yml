@@ -17,14 +17,14 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.backend=sp"
-      - "traefik.frontend.rule=Host:georchestra.mydomain.org"
+      - "traefik.frontend.rule=Host:georchestra.${DOMAIN}"
       - "traefik.frontend.passHostHeader=true"
 
   cas:
     labels:
       - "traefik.enable=true"
       - "traefik.backend=cas"
-      - "traefik.frontend.rule=Host:georchestra.mydomain.org;PathPrefix:/cas"
+      - "traefik.frontend.rule=Host:georchestra.${DOMAIN};PathPrefix:/cas"
 
   smtp:
     image: camptocamp/smtp-sink:latest
